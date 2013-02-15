@@ -20,12 +20,11 @@ That's why I came up with my own solution.
 - My kids each have their own account on my linux box
 - A cron job checks every minute, if one of the kids is logged on
 
-#!/bin/bash
+bash-script: called from cron
 USERXY=$(users | grep userxy)
 if [ -n "$USERXY" ]; then
- _curl --data "username=<username>"_ localhost:8080/kidpcctrl/rest/track/update
+ curl --data "username=<username>" localhost:8080/kidpcctrl/rest/track/update
 fi
-# add more users... as above
 
 - If so, it sends a http POST to a simple Restful Service (running on Tomcat)
 - A mysql database stores the state
