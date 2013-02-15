@@ -1,0 +1,20 @@
+<div ng-controller="InfoCtrl" class="container">
+    <h2>Computer</h2>
+    </header>
+    <div class="row">
+		<div class="span4">
+		  <div ng-repeat="info in infos">
+			  <h3>{{info.username}}</h3>
+			  <table class="table">
+				  <tbody>
+					  <tr class={{styleRemainingTime(info.creditBalanceInSeconds)}}><td>Time left</td><td><b>{{timeleft(info)}}</b></td></tr>
+					  <tr><td>Last activity</td><td>{{info.lastAccess | date:'dd.MM.yyyy hh:mm:ss'}}</td></tr>
+				  </tbody>
+			  </table>
+			  <hr class="bs-docs-separator">
+		  </div>
+		  <a class="btn btn-primary" ng-click="reload()">Reload</a>
+        </div>
+	</div>
+</div>
+
