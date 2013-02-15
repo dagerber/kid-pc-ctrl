@@ -21,10 +21,14 @@ That's why I came up with my own solution.
 - A cron job checks every minute, if one of the kids is logged on
 
 bash-script: called from cron
+```
+#!/bin/bash
 USERXY=$(users | grep userxy)
 if [ -n "$USERXY" ]; then
- curl --data "username=<username>" localhost:8080/kidpcctrl/rest/track/update
+  curl --data "username=<username>" localhost:8080/kidpcctrl/rest/track/update
 fi
+# add more as above...
+```
 
 - If so, it sends a http POST to a simple Restful Service (running on Tomcat)
 - A mysql database stores the state
@@ -40,18 +44,12 @@ As for now, no security is implemented... but that could very easily be implemen
 If the kids should discover that themselves, they really deserve some bonus...
 
 I have to access the additional function on the console with curl but probably will implement a very simple Android App for those tasks:
-
-_curl --data "username=<username>&minutes=10" http://localhost:8080/kidpcctrl/rest/track/extracredit_
-
-_curl --data "username=<username>&minutes=10" http://localhost:8080/kidpcctrl/rest/track/notrack_
-
-_curl --data "username=<username>" http://localhost:8080/kidpcctrl/rest/track/reset_
-
-_curl http://localhost:8080/kidpcctrl/rest/track/infos_
-
-_curl http://localhost:8080/kidpcctrl/rest/track/info/<user>_
+```
+curl --data "username=<username>&minutes=10" http://localhost:8080/kidpcctrl/rest/track/extracredit
+curl --data "username=<username>&minutes=10" http://localhost:8080/kidpcctrl/rest/track/notrack
+curl --data "username=<username>" http://localhost:8080/kidpcctrl/rest/track/reset
+curl http://localhost:8080/kidpcctrl/rest/track/infos
+curl http://localhost:8080/kidpcctrl/rest/track/info/<user>
 
 Webpage with infos: http://localhost:8080/kidpcctrl/static
-
-Feel free to use the source, if you want to
-https://github.com/dagerber/kid-pc-ctrl
+```
